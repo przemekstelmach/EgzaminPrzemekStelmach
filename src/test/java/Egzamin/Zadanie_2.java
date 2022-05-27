@@ -17,62 +17,62 @@ public class Zadanie_2 {
     {
 
         System.setProperty("webdriver.chrome.driver",
-                "src/main/resources/drivers/chromedriver.exe"); // ustawiamy systemowe property aby móć skorzystać z odpowiedniego drivera - tutaj akurat jest chrome driver
+                "src/main/resources/drivers/chromedriver.exe");
 
-        WebDriver driver = new ChromeDriver(); // tworzymy obiekt ChromeDriver
-        driver.manage().window().maximize(); // maksymalizujemy okno przeglądarki - Manager Windowsa Maksymalizuj
-        driver.get("https://mystore-testlab.coderslab.pl/index.php");        // wpisujemy adres strony i przechodzimy na tę stronę
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("https://mystore-testlab.coderslab.pl/index.php");
 
             WebElement MyStoreSightIn = driver.findElement(By.cssSelector("a[title='Log in to your customer account'] span[class='hidden-sm-down']"));
             MyStoreSightIn.click();
 
-            WebElement EmailLogin = driver.findElement(By.xpath("//input[@class='form-control']")); // wprowadzenie adresu email
+            WebElement EmailLogin = driver.findElement(By.xpath("//input[@class='form-control']"));
             EmailLogin.clear();
             EmailLogin.sendKeys("boesdworgcgzipspks@kvhrr.com");
 
-            WebElement PasswordPutIn = driver.findElement(By.xpath("//input[@name='password']")); // wprowadzenie password
+            WebElement PasswordPutIn = driver.findElement(By.xpath("//input[@name='password']"));
             PasswordPutIn.clear();
             PasswordPutIn.sendKeys("coderslab");
 
-            WebElement SignInButton = driver.findElement(By.xpath("//button[@id='submit-login']")); // Zatwierdzenie buttonem SIGN IN
+            WebElement SignInButton = driver.findElement(By.xpath("//button[@id='submit-login']"));
             SignInButton.submit();
 
-            WebElement MyStoreButton = driver.findElement(By.xpath("//img[@alt='PrestaShop']")); // przejsćie do HomePage
+            WebElement MyStoreButton = driver.findElement(By.xpath("//img[@alt='PrestaShop']"));
             MyStoreButton.click();
 
-            WebElement HummingbirdPrintedSweaterButton = driver.findElement(By.xpath("//img[@alt='Brown bear printed sweater']")); // wybór HummingbirdPrintedSweater
+            WebElement HummingbirdPrintedSweaterButton = driver.findElement(By.xpath("//img[@alt='Brown bear printed sweater']"));
             HummingbirdPrintedSweaterButton.click();
 
-            Select SizeMSelect = new Select(driver.findElement(By.name("group[1]"))); // wybór rozmiaru M
+            Select SizeMSelect = new Select(driver.findElement(By.name("group[1]")));
             SizeMSelect.selectByValue("2");
 
-            WebElement QuantityButton = driver.findElement(By.id("quantity_wanted")); // wybór 5 sztuk
+            WebElement QuantityButton = driver.findElement(By.id("quantity_wanted"));
             QuantityButton.clear();
             driver.findElement(By.id("quantity_wanted")).sendKeys("5");
 
-            WebElement AddToCartButton = driver.findElement(By.xpath("//button[@class='btn btn-primary add-to-cart']")); // dadanie produktów do karty
+            WebElement AddToCartButton = driver.findElement(By.xpath("//button[@class='btn btn-primary add-to-cart']"));
             AddToCartButton.click();
 
-            Thread.sleep(1000); // zwonienie kodu dla wyskakujacego okna
-            driver.findElement(By.cssSelector("a[class='btn btn-primary']")).click(); // Przejście od koszyka
+            Thread.sleep(1000);
+            driver.findElement(By.cssSelector("a[class='btn btn-primary']")).click();
 
-            driver.findElement(By.cssSelector("a[class='btn btn-primary']")).click(); // zatwierdzenie kosztyka
+            driver.findElement(By.cssSelector("a[class='btn btn-primary']")).click();
 
-            WebElement ConfirmButton = driver.findElement(By.xpath("//button[@name='confirm-addresses']")); // Potwierdzenie zakupów
+            WebElement ConfirmButton = driver.findElement(By.xpath("//button[@name='confirm-addresses']"));
             ConfirmButton.click();
 
-            driver.findElement(By.xpath("//div[@class='delivery-options']//div[1]//div[1]//span[1]//span[1]")).click(); // wybór odbioru w sklepie
+            driver.findElement(By.xpath("//div[@class='delivery-options']//div[1]//div[1]//span[1]//span[1]")).click();
 
-            WebElement PickUpButton = driver.findElement(By.xpath("//button[@name='confirmDeliveryOption']")); // Potwierdzenie odbioru w sklepie
+            WebElement PickUpButton = driver.findElement(By.xpath("//button[@name='confirmDeliveryOption']"));
             PickUpButton.click();
 
-            driver.findElement(By.xpath("//input[@id='payment-option-1']")).click(); // płatność by Check
-            driver.findElement(By.xpath("//input[@id='conditions_to_approve[terms-and-conditions]']")).click(); // zatwierdzenie regulaminu
+            driver.findElement(By.xpath("//input[@id='payment-option-1']")).click();
+            driver.findElement(By.xpath("//input[@id='conditions_to_approve[terms-and-conditions]']")).click();
 
-            WebElement FinalButton = driver.findElement(By.cssSelector("button[class='btn btn-primary center-block']")); // zatwierdzenie zakupów
+            WebElement FinalButton = driver.findElement(By.cssSelector("button[class='btn btn-primary center-block']"));
             FinalButton.click();
 
-        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);  // wykonanie screenshota
+        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile, new File("src/test/screenshot/screenshot.png"));
     }
 }

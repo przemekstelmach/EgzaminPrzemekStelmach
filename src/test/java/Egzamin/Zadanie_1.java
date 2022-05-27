@@ -34,9 +34,9 @@ public class Zadanie_1
     {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
 
-        driver = new ChromeDriver(); // Definicja zminnej driver dla Chrome
-        driver.manage().window().maximize();  // okno przegládaki na fullscreen
-        driver.get("https://mystore-testlab.coderslab.pl/index.php"); // wybór adresu www
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("https://mystore-testlab.coderslab.pl/index.php");
     }
 
     @When ("user click SightInButton")
@@ -46,19 +46,19 @@ public class Zadanie_1
         WebElement MyStoreSightIn = driver.findElement(By.cssSelector("a[title='Log in to your customer account'] span[class='hidden-sm-down']"));
         MyStoreSightIn.click();
 
-        WebElement EmailLogin = driver.findElement(By.xpath("//input[@class='form-control']")); // wprowadzenie adresu email
+        WebElement EmailLogin = driver.findElement(By.xpath("//input[@class='form-control']"));
         EmailLogin.clear();
         EmailLogin.sendKeys("boesdworgcgzipspks@kvhrr.com");
 
-        WebElement PasswordPutIn = driver.findElement(By.xpath("//input[@name='password']")); // wprowadzenie password
+        WebElement PasswordPutIn = driver.findElement(By.xpath("//input[@name='password']"));
         PasswordPutIn.clear();
         PasswordPutIn.sendKeys("coderslab");
 
-        WebElement SignInButton = driver.findElement(By.xpath("//button[@id='submit-login']")); // Zatwierdzenie buttonem SIGN IN
+        WebElement SignInButton = driver.findElement(By.xpath("//button[@id='submit-login']"));
         SignInButton.submit();
     }
 
-    @And ("user go to new adresses add page")  // wejście w podstronę z formularzem
+    @And ("user go to new adresses add page")
     public void adressClick()
     {
        WebElement AdressesButton= By.xpath("//i[contains(text(),'\uE567')]").findElement(driver); // Przejście do podstrony z adresem
@@ -66,57 +66,54 @@ public class Zadanie_1
     }
 
     @And("user provide his country")
-    // wykorzystno biblioteke SELECT, wybór kraju zmiania kojekność układu formularza adresu. Dla uzyskania stałego układu wybór kraju jest używany jako pierwszy.
-    // https://www.selenium.dev/documentation/webdriver/elements/select_lists/
+
      public void provideUserCountry()
     {
         Select countrySelect = new Select(driver.findElement(By.name("id_country")));
         countrySelect.selectByValue("17");
             }
 
-    @And("^user provide his alias (.*)") // wprowadzenie aliasu
+    @And("^user provide his alias (.*)")
     public void provideUserAlias(String alias)
     {
         WebElement aliasBar = driver.findElement(By.xpath("//input[@name='alias']"));
         aliasBar.clear();
-        aliasBar.sendKeys(alias); // wywołanie parametru
+        aliasBar.sendKeys(alias);
         aliasBar.submit();
     }
 
-    @And("^user provide his adress (.*)") // Wpisanie ulicy
+    @And("^user provide his adress (.*)")
     public void provideUserAdress(String adress)
     {
         WebElement adressBar = driver.findElement(By.xpath("//input[@name='address1']"));
         adressBar.clear();
-        adressBar.sendKeys(adress); // wywołanie parametru
+        adressBar.sendKeys(adress);
         adressBar.submit();
     }
 
-    @And("^user provide his city (.*)") // wprowadzeni miasta
+    @And("^user provide his city (.*)")
     public void provideUserCity(String city)
     {
         WebElement cityBar = driver.findElement(By.xpath("//input[@name='city']"));
         cityBar.clear();
-        cityBar.sendKeys(city); // wywołanie parametru
-        //cityBar.submit();
+        cityBar.sendKeys(city);
     }
 
-    @And("^user provide his postalCode (.*)")  // wprowadzenie kodu pocztowego
+    @And("^user provide his postalCode (.*)")
     public void provideUserPostalCode(String postalCode)
     {
         WebElement postalCodeBar = driver.findElement(By.xpath("//input[@name='postcode']"));
         postalCodeBar.clear();
-        postalCodeBar.sendKeys(postalCode); // wywołanie parametru
-        // postalCodeBar.submit();  -  stona z formularzem mając wpisane 3 dane Adress, city, postalcode po akcji SUMBIT automatycznie zatwierdza formularz i przechodzi dalej
+        postalCodeBar.sendKeys(postalCode);
     }
 
 
-    @And("^user provide his phone (.*)")  // wprowadzenie nr telefonu
+    @And("^user provide his phone (.*)")
     public void provideUserPhone(String phone)
     {
         WebElement phoneBar = driver.findElement(By.xpath("//input[@name='phone']"));
         phoneBar.clear();
-        phoneBar.sendKeys(phone); // wywołanie parametru
+        phoneBar.sendKeys(phone);
         phoneBar.submit();
     }
 
@@ -125,7 +122,7 @@ public class Zadanie_1
     {
         String paraText = driver.findElement(By.xpath("//body//main//address[1]")).getText();
 
-        // System.out.println(paraText);
+
         String[] lista = paraText.split("\n");
         System.out.println(lista[0]);
         System.out.println(lista[1]);
@@ -141,7 +138,7 @@ public class Zadanie_1
 
     }
 
-    @And("close browser")  // zamknięcie przeglądarki
+    @And("close browser")
     public void closeBrowser()
     {
         driver.quit();
