@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         plugin = {"pretty","html:out"})
 
 public class Zadanie_1_test
-        // przed uruchmienem testu - usunąć ręcznie wcześnej wprowadzony adres!!!
+    // przed uruchmienem testu - usunąć ręcznie wcześnej wprowadzony adres!!!
 {
 
 

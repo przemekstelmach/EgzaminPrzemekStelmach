@@ -30,7 +30,7 @@ public class Zadanie_1
 
 
     @Given("open Chrome browser at MyStore Homepage")
-    public void openHomePage ()
+            public void openHomePage ()
     {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
 
@@ -40,7 +40,7 @@ public class Zadanie_1
     }
 
     @When ("user click SightInButton")
-    public void logingIn()
+        public void logingIn()
     {
 
         WebElement MyStoreSightIn = driver.findElement(By.cssSelector("a[title='Log in to your customer account'] span[class='hidden-sm-down']"));
@@ -61,18 +61,18 @@ public class Zadanie_1
     @And ("user go to new adresses add page")  // wejście w podstronę z formularzem
     public void adressClick()
     {
-        WebElement AdressesButton= By.xpath("//i[contains(text(),'\uE567')]").findElement(driver); // Przejście do podstrony z adresem
-        AdressesButton.click();
+       WebElement AdressesButton= By.xpath("//i[contains(text(),'\uE567')]").findElement(driver); // Przejście do podstrony z adresem
+       AdressesButton.click();
     }
 
     @And("user provide his country")
     // wykorzystno biblioteke SELECT, wybór kraju zmiania kojekność układu formularza adresu. Dla uzyskania stałego układu wybór kraju jest używany jako pierwszy.
     // https://www.selenium.dev/documentation/webdriver/elements/select_lists/
-    public void provideUserCountry()
+     public void provideUserCountry()
     {
         Select countrySelect = new Select(driver.findElement(By.name("id_country")));
         countrySelect.selectByValue("17");
-    }
+            }
 
     @And("^user provide his alias (.*)") // wprowadzenie aliasu
     public void provideUserAlias(String alias)
@@ -148,3 +148,4 @@ public class Zadanie_1
     }
 
 }
+
