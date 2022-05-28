@@ -61,7 +61,7 @@ public class Zadanie_1
     @And ("user go to new adresses add page")
     public void adressClick()
     {
-       WebElement AdressesButton= By.xpath("//i[contains(text(),'\uE567')]").findElement(driver); // Przejście do podstrony z adresem
+       WebElement AdressesButton= By.xpath("//*[@id=\"address-link\"]").findElement(driver);
        AdressesButton.click();
     }
 
